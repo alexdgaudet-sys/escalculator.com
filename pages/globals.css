@@ -1,0 +1,105 @@
+:root {
+  --paper: #F3F5F0;
+  --card: #FBFCF9;
+  --ink: #1C2721;
+  --muted: #64705F;
+  --rule: #CBD4C7;
+  --rule-soft: #DEE5DA;
+  --teal: #0E6E5C;
+  --teal-soft: #E3EEE9;
+  --stamp: #8A2F28;
+  --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+input, textarea, select {
+  font-family: var(--sans);
+}
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: #fff;
+  border: 1px solid var(--teal);
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s, filter 0.2s;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--teal);
+  border-color: var(--rule);
+}
+
+.btn.secondary:hover {
+  background: var(--teal-soft);
+  filter: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--muted);
+}

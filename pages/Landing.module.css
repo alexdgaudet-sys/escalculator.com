@@ -1,0 +1,417 @@
+.page {
+  min-height: 100vh;
+}
+
+/* Navigation */
+.nav {
+  background: var(--card);
+  border-bottom: 1px solid var(--rule-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+/* Hero */
+.hero {
+  background: var(--paper);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.highlight {
+  color: var(--teal);
+  font-style: italic;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 680px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+
+.ctaGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.ctaGroup .btn {
+  font-size: 15px;
+}
+
+.subtext {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Features */
+.features {
+  padding: 80px 20px;
+  background: var(--card);
+}
+
+.sectionTitle {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.featureCard {
+  background: white;
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.featureIcon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.featureCard h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.featureCard p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Coverage */
+.coverage {
+  padding: 80px 20px;
+  background: var(--paper);
+}
+
+.coverageContent {
+  text-align: center;
+}
+
+.coverageContent h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.coverageContent > p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.statesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.stateTag {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+}
+
+/* Pricing */
+.pricing {
+  padding: 80px 20px;
+  background: var(--card);
+}
+
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.priceCard {
+  background: white;
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  padding: 32px 24px;
+  position: relative;
+}
+
+.priceCard.recommended {
+  border: 2px solid var(--teal);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .priceCard.recommended {
+    transform: scale(1);
+  }
+}
+
+.priceBadge {
+  display: inline-block;
+  background: var(--teal-soft);
+  color: var(--teal);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.priceAmount {
+  font-family: var(--mono);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pricePeriod {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.priceFeatures {
+  list-style: none;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.priceFeatures li {
+  padding: 8px 0;
+  font-size: 13.5px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.priceFeatures li:last-child {
+  border-bottom: none;
+}
+
+.priceCard .btn,
+.priceCard a.btn {
+  display: block;
+  text-align: center;
+}
+
+/* Comparison */
+.comparison {
+  padding: 80px 20px;
+  background: var(--paper);
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comparisonTable thead {
+  background: var(--paper);
+}
+
+.comparisonTable th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+}
+
+.comparisonTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 14px;
+}
+
+.comparisonTable tr:last-child td {
+  border-bottom: none;
+}
+
+.checkmark {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* FAQ */
+.faq {
+  padding: 80px 20px;
+  background: var(--card);
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.faqItem {
+  background: white;
+  border: 1px solid var(--rule-soft);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.faqItem h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.faqItem p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Final CTA */
+.finalCta {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, var(--teal-soft) 0%, var(--paper) 100%);
+  text-align: center;
+}
+
+.finalCta h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.finalCta p {
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+/* Footer */
+.footer {
+  background: var(--ink);
+  color: white;
+  padding: 48px 20px;
+}
+
+.footerBrand {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.footer h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .h1 {
+    font-size: 28px;
+  }
+
+  .features,
+  .coverage,
+  .pricing,
+  .comparison,
+  .faq {
+    padding: 60px 20px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .ctaGroup {
+    flex-direction: column;
+  }
+
+  .ctaGroup .btn {
+    width: 100%;
+  }
+}
