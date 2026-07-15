@@ -1,4 +1,5 @@
-import Link from 'next/link'import Calculator from '../components/Calculator'
+import Link from 'next/link'
+import Calculator from '../components/Calculator'
 import styles from '../styles/Dashboard.module.css'
 
 export default function Dashboard() {
