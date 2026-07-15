@@ -1,7 +1,15 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { supabase } from '../lib/supabaseClient'
 import styles from '../styles/Dashboard.module.css'
 
 export default function Dashboard() {
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push('/login')
+  }
   const user = {
     name: 'Welcome User',
     email: 'user@agency.com',
