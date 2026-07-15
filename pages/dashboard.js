@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link'import Calculator from '../components/Calculator'
 import styles from '../styles/Dashboard.module.css'
 
 export default function Dashboard() {
@@ -91,8 +91,11 @@ export default function Dashboard() {
 
           {/* Grid */}
           <div className={styles.grid}>
-            {/* Quick actions */}
-            <section className={styles.card}>
+            {/* Calculator */}
+<section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+  <Calculator />
+</section>
+
               <h2>Quick actions</h2>
               <div className={styles.actionGrid}>
                 <Link href="/app/calculator" className={styles.action}>
