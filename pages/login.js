@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { supabase } from '../lib/supabaseClient'
 import Link from 'next/link'
 import styles from '../styles/Auth.module.css'
 
 export default function Login() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -13,48 +16,42 @@ export default function Login() {
     setError('')
     setLoading(true)
 
-    // This is a placeholder. In real implementation, connect to Supabase or your auth service
     try {
-      // Example: const { user, error } = await supabase.auth.signInWithPassword({...})
-      // For now, just validate and redirect
-      if (!email || !password) {
-        setError('Please enter email and password')
+      const { data, error: loginError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+
+      if (loginError) {
+        setError(loginError.message)
         setLoading(false)
         return
       }
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 800))
+      router.push('/dashboard')
 
-      // In real app: if (error) { setError(error.message); return; }
-      // Then redirect to dashboard: router.push('/dashboard')
-      alert('Login would work once backend is set up!\n\nFor now:\n1. Set up Supabase account\n2. Enable email auth\n3. Connect to this page\n4. User data will persist')
-      setLoading(false)
     } catch (err) {
-      setError('An error occurred. Please try again.')
+      setError('Error: ' + err.message)
       setLoading(false)
     }
   }
 
   return (
     <div className={styles.page}>
-      {/* Left side - branding */}
       <div className={styles.branding}>
         <div className={styles.brandContent}>
           <div className={styles.logo}>
             <div className={styles.logoMark}>≈</div>
-            <div>Surplus Lines Tax</div>
+            <div>E&S Calculator</div>
           </div>
           <h2>Calculate. Comply. Close faster.</h2>
-          <p>
-            Tax calculations and compliance forms for all 50 states. Used by brokers, MGAs, and wholesalers.
-          </p>
+          <p>Tax calculations and compliance forms for all 50 states. Used by brokers, MGAs, and wholesalers.</p>
           <div className={styles.features}>
             <div className={styles.feature}>
               <span>✓</span>
               <div>
                 <strong>All 50 states</strong>
-                <p>Tax, stamping fees, and filing charges</p>
+                <p>Tax, stamping fees, filing charges</p>
               </div>
             </div>
             <div className={styles.feature}>
@@ -80,13 +77,12 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Right side - login form */}
       <div className={styles.authForm}>
         <div className={styles.formWrapper}>
           <h1>Sign in to your account</h1>
           <p>Continue to access your calculations and compliance forms.</p>
 
-          {error && <div className={styles.alert}>{error}</div>}
+          {error && <div className={styles.alert} style={{ color: '#c41e3a', background: '#ffe6eb', borderLeft: '3px solid #c41e3a' }}>{error}</div>}
 
           <form onSubmit={handleSubmit}>
             <div className={styles.field}>
@@ -98,6 +94,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={loading}
+                required
               />
             </div>
 
@@ -113,6 +110,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={loading}
+                required
               />
             </div>
 
@@ -120,16 +118,11 @@ export default function Login() {
               type="submit" 
               className={styles.submitBtn}
               disabled={loading}
+              style={{ opacity: loading ? 0.6 : 1 }}
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
-
-          <div className={styles.divider}>or</div>
-
-          <button className={styles.demoBtn}>
-            Demo account (test access)
-          </button>
 
           <div className={styles.footer}>
             <p>
