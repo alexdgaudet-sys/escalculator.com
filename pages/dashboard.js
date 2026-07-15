@@ -24,7 +24,7 @@ export default function Dashboard() {
           <div className={styles.logo}>E&S Calculator</div>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
             <span className={styles.userEmail}>{user.email}</span>
-            <button className={styles.logoutBtn}>Sign out</button>
+        <button className={styles.logoutBtn} onClick={handleLogout}>Sign out</button>
           </div>
         </div>
       </nav>
