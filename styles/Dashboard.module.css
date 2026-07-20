@@ -1,12 +1,14 @@
 .page {
   width: 100%;
-  max-width: 100%;
+  min-height: 100vh;
+  background: var(--paper);
 }
 
 .nav {
   background: white;
   border-bottom: 1px solid var(--rule);
   padding: 0;
+  sticky: top;
 }
 
 .logo {
@@ -28,6 +30,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .logoutBtn:hover {
@@ -36,7 +39,6 @@
 
 .main {
   width: 100%;
-  max-width: 100%;
   padding: 40px 20px;
   background: var(--paper);
 }
@@ -46,10 +48,22 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
-  padding: 20px;
+  padding: 24px;
   background: white;
   border-radius: 6px;
   border: 1px solid var(--rule);
+}
+
+.welcome h1 {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  margin: 0 0 8px 0;
+  color: var(--ink);
+}
+
+.welcome p {
+  color: var(--muted);
+  margin: 0;
 }
 
 .grid {
@@ -63,14 +77,46 @@
   background: white;
   border: 1px solid var(--rule);
   border-radius: 6px;
-  padding: 20px;
+  padding: 24px;
 }
 
 .card h2 {
   font-family: Georgia, serif;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--ink);
+}
+
+.card h3 {
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 12px;
   color: var(--ink);
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card li {
+  padding: 8px 0;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.card li:last-child {
+  border-bottom: none;
 }
 
 .footer {
@@ -85,13 +131,22 @@
   cursor: pointer;
 }
 
+.link:hover {
+  color: var(--ink);
+}
+
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
   }
-  
+
   .welcome {
     flex-direction: column;
     gap: 16px;
+    text-align: center;
+  }
+
+  .main {
+    padding: 20px;
   }
 }
