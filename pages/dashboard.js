@@ -20,7 +20,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className={styles.page}>
+ <div className={styles.page} style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
       {/* Navigation */}
       <nav className={styles.nav}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px' }}>
@@ -39,7 +39,7 @@ export default function Dashboard() {
       </nav>
 
       {/* Main Content */}
-      <main className={styles.main}>
+   <main className={styles.main} style={{ width: '100%', maxWidth: '100%' }}>
        <div className="container" style={{ width: '100%', maxWidth: '100%', padding: '20px' }}>
           {/* Welcome Section */}
           <div className={styles.welcome}>
