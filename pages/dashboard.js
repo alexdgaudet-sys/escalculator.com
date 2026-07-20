@@ -1,5 +1,5 @@
 import styles from '../styles/Dashboard.module.css'
-import TaxCalculator from '../components/TaxCalculator'
+import Calculator from '../components/Calculator'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
