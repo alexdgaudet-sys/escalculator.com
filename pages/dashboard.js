@@ -40,7 +40,7 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className={styles.main}>
-        <div className="container">
+       <div className="container" style={{ width: '100%', maxWidth: '100%', padding: '20px' }}>
           {/* Welcome Section */}
           <div className={styles.welcome}>
             <div>
@@ -53,7 +53,7 @@ export default function Dashboard() {
           </div>
 
           {/* Grid */}
-          <div className={styles.grid}>
+          <div className={styles.grid} style={{ width: '100%', maxWidth: '100%' }}>
             {/* Calculator */}
 <section className={styles.card} style={{ gridColumn: '1 / -1' }}>
   <Calculator />
