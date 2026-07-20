@@ -3,7 +3,7 @@ import Calculator from '../components/Calculator'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
-import styles from '../styles/Dashboard.module.css'
+
 
 export default function Dashboard() {
   const router = useRouter()
