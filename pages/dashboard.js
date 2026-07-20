@@ -56,7 +56,7 @@ export default function Dashboard() {
           <div className={styles.grid}>
             {/* Calculator */}
 <section className={styles.card} style={{ gridColumn: '1 / -1' }}>
-  <TaxCalculator />
+  <Calculator />
 </section>
             {/* Quick Start */}
             <section className={styles.card}>
