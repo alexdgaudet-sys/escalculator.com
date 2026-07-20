@@ -41,7 +41,7 @@ export default function TaxCalculator() {
   }
 
   return (
-    <div style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}>
+    <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', padding: '20px' }}>
       <h2 style={{ marginBottom: '20px', fontFamily: 'Georgia, serif', fontSize: '24px' }}>
         Surplus Lines Tax Calculator
       </h2>
