@@ -1,3 +1,5 @@
+import styles from '../styles/Dashboard.module.css'
+import TaxCalculator from '../components/TaxCalculator'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
@@ -52,6 +54,10 @@ export default function Dashboard() {
 
           {/* Grid */}
           <div className={styles.grid}>
+            {/* Calculator */}
+<section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+  <TaxCalculator />
+</section>
             {/* Quick Start */}
             <section className={styles.card}>
               <h2>Getting Started</h2>
