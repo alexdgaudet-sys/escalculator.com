@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
-import SDEFormGenerator from './SDEFormGenerator'
 
 const stateRates = {
   'AL': 0.05, 'AK': 0.05, 'AZ': 0.06, 'AR': 0.06, 'CA': 0.07, 'CO': 0.10,
@@ -259,8 +258,6 @@ export default function TaxCalculator() {
               </tr>
             </tbody>
           </table>
-
-          <SDEFormGenerator calculation={result} />
         </div>
       )}
     </div>
