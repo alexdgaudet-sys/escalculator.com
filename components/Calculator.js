@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
+import SDEFormGenerator from './SDEFormGenerator'
 
 const stateRates = {
   'AL': 0.05, 'AK': 0.05, 'AZ': 0.06, 'AR': 0.06, 'CA': 0.07, 'CO': 0.10,
@@ -19,15 +20,19 @@ export default function TaxCalculator() {
   const [effectiveDate, setEffectiveDate] = useState('')
   const [state, setState] = useState('TX')
   const [premium, setPremium] = useState('100000')
+  const [stampingFees, setStampingFees] = useState('0')
+  const [agentPolicyFee, setAgentPolicyFee] = useState('0')
   const [result, setResult] = useState(null)
 
   const handleCalculate = async () => {
     if (!premium || !state) return
 
     const premiumAmount = parseFloat(premium)
+    const stampingAmount = parseFloat(stampingFees) || 0
+    const agentFeeAmount = parseFloat(agentPolicyFee) || 0
     const taxRate = stateRates[state] || 0.05
     const taxAmount = premiumAmount * taxRate
-    const totalAmount = premiumAmount + taxAmount
+    const totalAmount = premiumAmount + taxAmount + stampingAmount + agentFeeAmount
 
     setResult({
       policyNumber,
@@ -37,6 +42,8 @@ export default function TaxCalculator() {
       premium: premiumAmount,
       taxRate,
       tax: taxAmount,
+      stampingFees: stampingAmount,
+      agentPolicyFee: agentFeeAmount,
       total: totalAmount,
     })
 
@@ -45,18 +52,20 @@ export default function TaxCalculator() {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
-       await supabase.from('calculations').insert([
-  {
-    user_id: user.id,
-    state,
-    premium: premiumAmount,
-    fees: 0,
-    tax_amount: taxAmount,
-    total_amount: totalAmount,
-    policy_number: policyNumber,
-    policyholder_name: policyholderName,
-  }
-])
+        await supabase.from('calculations').insert([
+          {
+            user_id: user.id,
+            state,
+            premium: premiumAmount,
+            fees: stampingAmount + agentFeeAmount,
+            tax_amount: taxAmount,
+            total_amount: totalAmount,
+            policy_number: policyNumber,
+            policyholder_name: policyholderName,
+            stamping_fees: stampingAmount,
+            agent_policy_fee: agentFeeAmount,
+          }
+        ])
       }
     } catch (err) {
       console.error('Error saving calculation:', err)
@@ -149,6 +158,34 @@ export default function TaxCalculator() {
               style={{ width: '100%', padding: '10px', border: '1px solid var(--rule)', borderRadius: '4px', fontSize: '15px' }}
             />
           </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', fontSize: '12px', textTransform: 'uppercase', color: 'var(--muted)' }}>
+              Stamping/Processing Fees
+            </label>
+            <input
+              type="number"
+              value={stampingFees}
+              onChange={(e) => setStampingFees(e.target.value)}
+              placeholder="0.00"
+              step="0.01"
+              style={{ width: '100%', padding: '10px', border: '1px solid var(--rule)', borderRadius: '4px', fontSize: '15px' }}
+            />
+          </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <label style={{ display: 'block', marginBottom: '6px', fontWeight: 'bold', fontSize: '12px', textTransform: 'uppercase', color: 'var(--muted)' }}>
+              Agent Policy Fee
+            </label>
+            <input
+              type="number"
+              value={agentPolicyFee}
+              onChange={(e) => setAgentPolicyFee(e.target.value)}
+              placeholder="0.00"
+              step="0.01"
+              style={{ width: '100%', padding: '10px', border: '1px solid var(--rule)', borderRadius: '4px', fontSize: '15px' }}
+            />
+          </div>
         </div>
 
         <button
@@ -209,11 +246,21 @@ export default function TaxCalculator() {
                 <td style={{ padding: '8px 0', borderBottom: '1px solid var(--rule-soft)', textAlign: 'right', fontWeight: 'bold', color: 'var(--teal)' }}>${result.tax.toFixed(2)}</td>
               </tr>
               <tr>
+                <td style={{ padding: '8px 0', borderBottom: '1px solid var(--rule-soft)' }}>Stamping Fees:</td>
+                <td style={{ padding: '8px 0', borderBottom: '1px solid var(--rule-soft)', textAlign: 'right' }}>${result.stampingFees ? parseFloat(result.stampingFees).toFixed(2) : '0.00'}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '8px 0', borderBottom: '1px solid var(--rule-soft)' }}>Agent Policy Fee:</td>
+                <td style={{ padding: '8px 0', borderBottom: '1px solid var(--rule-soft)', textAlign: 'right' }}>${result.agentPolicyFee ? parseFloat(result.agentPolicyFee).toFixed(2) : '0.00'}</td>
+              </tr>
+              <tr>
                 <td style={{ padding: '12px 0', fontSize: '16px', fontWeight: 'bold' }}>Total:</td>
                 <td style={{ padding: '12px 0', textAlign: 'right', fontSize: '16px', fontWeight: 'bold', color: 'var(--teal)' }}>${result.total.toFixed(2)}</td>
               </tr>
             </tbody>
           </table>
+
+          <SDEFormGenerator calculation={result} />
         </div>
       )}
     </div>
