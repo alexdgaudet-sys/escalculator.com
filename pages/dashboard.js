@@ -1,6 +1,7 @@
 import styles from '../styles/Dashboard.module.css'
 import Calculator from '../components/Calculator'
 import CalculationHistory from '../components/CalculationHistory'
+import Reports from '../components/Reports'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
@@ -21,7 +22,7 @@ export default function Dashboard() {
   }
 
   return (
- <div className={styles.page} style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}>
+    <div className={styles.page}>
       {/* Navigation */}
       <nav className={styles.nav}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px' }}>
@@ -40,8 +41,8 @@ export default function Dashboard() {
       </nav>
 
       {/* Main Content */}
-   <main className={styles.main} style={{ width: '100%', maxWidth: '100%' }}>
-       <div className="container" style={{ width: '100%', maxWidth: '100%', padding: '20px' }}>
+      <main className={styles.main}>
+        <div className="container">
           {/* Welcome Section */}
           <div className={styles.welcome}>
             <div>
@@ -54,15 +55,22 @@ export default function Dashboard() {
           </div>
 
           {/* Grid */}
-          <div className={styles.grid} style={{ width: '100%', maxWidth: '100%' }}>
+          <div className={styles.grid}>
             {/* Calculator */}
-<section className={styles.card} style={{ gridColumn: '1 / -1' }}>
-  {/* Calculation History */}
-<section className={styles.card} style={{ gridColumn: '1 / -1' }}>
-  <CalculationHistory />
-</section>
-  <Calculator />
-</section>
+            <section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+              <Calculator />
+            </section>
+
+            {/* Calculation History */}
+            <section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+              <CalculationHistory />
+            </section>
+
+            {/* Reports */}
+            <section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+              <Reports />
+            </section>
+
             {/* Quick Start */}
             <section className={styles.card}>
               <h2>Getting Started</h2>
