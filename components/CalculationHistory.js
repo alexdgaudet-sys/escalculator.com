@@ -55,17 +55,25 @@ export default function CalculationHistory() {
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr style={{ borderBottom: '2px solid var(--rule)', background: 'var(--teal-soft)' }}>
-            <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold' }}>State</th>
-            <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold' }}>Premium</th>
-            <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold' }}>Tax</th>
-            <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold' }}>Total</th>
+            <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '12px' }}>Policyholder</th>
+            <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '12px' }}>Policy #</th>
+            <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '12px' }}>State</th>
+            <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold', fontSize: '12px' }}>Premium</th>
+            <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold', fontSize: '12px' }}>Tax</th>
+            <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold', fontSize: '12px' }}>Total</th>
             <th style={{ padding: '12px', textAlign: 'right', fontWeight: 'bold', fontSize: '12px' }}>Date</th>
           </tr>
         </thead>
         <tbody>
           {calculations.map((calc, idx) => (
             <tr key={idx} style={{ borderBottom: '1px solid var(--rule-soft)' }}>
-              <td style={{ padding: '12px' }}><strong>{calc.state}</strong></td>
+              <td style={{ padding: '12px', fontSize: '14px' }}>
+                {calc.policyholder_name || '—'}
+              </td>
+              <td style={{ padding: '12px', fontSize: '14px', fontFamily: 'monospace' }}>
+                {calc.policy_number || '—'}
+              </td>
+              <td style={{ padding: '12px', fontWeight: 'bold' }}>{calc.state}</td>
               <td style={{ padding: '12px', textAlign: 'right' }}>${parseFloat(calc.premium).toFixed(2)}</td>
               <td style={{ padding: '12px', textAlign: 'right', color: 'var(--teal)', fontWeight: 'bold' }}>
                 ${parseFloat(calc.tax_amount).toFixed(2)}
