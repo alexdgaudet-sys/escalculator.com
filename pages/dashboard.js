@@ -1,5 +1,6 @@
 import styles from '../styles/Dashboard.module.css'
 import Calculator from '../components/Calculator'
+import CalculationHistory from '../components/CalculationHistory'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { supabase } from '../lib/supabaseClient'
@@ -56,6 +57,10 @@ export default function Dashboard() {
           <div className={styles.grid} style={{ width: '100%', maxWidth: '100%' }}>
             {/* Calculator */}
 <section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+  {/* Calculation History */}
+<section className={styles.card} style={{ gridColumn: '1 / -1' }}>
+  <CalculationHistory />
+</section>
   <Calculator />
 </section>
             {/* Quick Start */}
