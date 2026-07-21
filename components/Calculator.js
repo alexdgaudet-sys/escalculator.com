@@ -45,16 +45,18 @@ export default function TaxCalculator() {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (user) {
-        await supabase.from('calculations').insert([
-          {
-            user_id: user.id,
-            state,
-            premium: premiumAmount,
-            fees: 0,
-            tax_amount: taxAmount,
-            total_amount: totalAmount,
-          }
-        ])
+       await supabase.from('calculations').insert([
+  {
+    user_id: user.id,
+    state,
+    premium: premiumAmount,
+    fees: 0,
+    tax_amount: taxAmount,
+    total_amount: totalAmount,
+    policy_number: policyNumber,
+    policyholder_name: policyholderName,
+  }
+])
       }
     } catch (err) {
       console.error('Error saving calculation:', err)
