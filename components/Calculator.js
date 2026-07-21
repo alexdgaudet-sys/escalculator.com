@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
 const stateRates = {
@@ -22,30 +21,7 @@ export default function TaxCalculator() {
   const [premium, setPremium] = useState('100000')
   const [result, setResult] = useState(null)
 
-  const handleCalculate = () => {
-    // Save to Supabase
-const saveToDatabase = async () => {
-  try {
-    const { data: { user } } = await supabase.auth.getUser()
-    
-    if (user) {
-      await supabase.from('calculations').insert([
-        {
-          user_id: user.id,
-          state,
-          premium: premiumAmount,
-          fees: rates.fee || 0,
-          tax_amount: taxAmount,
-          total_amount: totalAmount,
-        }
-      ])
-    }
-  } catch (err) {
-    console.error('Error saving calculation:', err)
-  }
-}
-
-saveToDatabase()
+  const handleCalculate = async () => {
     if (!premium || !state) return
 
     const premiumAmount = parseFloat(premium)
@@ -63,6 +39,26 @@ saveToDatabase()
       tax: taxAmount,
       total: totalAmount,
     })
+
+    // Save to Supabase
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (user) {
+        await supabase.from('calculations').insert([
+          {
+            user_id: user.id,
+            state,
+            premium: premiumAmount,
+            fees: 0,
+            tax_amount: taxAmount,
+            total_amount: totalAmount,
+          }
+        ])
+      }
+    } catch (err) {
+      console.error('Error saving calculation:', err)
+    }
   }
 
   return (
